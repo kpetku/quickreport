@@ -67,23 +67,18 @@ func (report Result) parse(r io.Reader) (Result, error) {
 			// Check for duplicate sites in the map and preserve their previous results
 			if prevResult, found := sites[site]; found {
 				if isBlacklisted {
-					//					log.Printf("DEBUG blacklisted++ len: %d, DUMPING: %s blacklisted: %v, malwaredetected: %v", len(sites), site, isBlacklisted, isMalwareFound)
 					sites[site] = status{isBlacklisted: isBlacklisted, isMalwareFound: prevResult.isMalwareFound}
 				} else if isMalwareFound {
-					//					log.Printf("DEBUG malwarefound++ len: %d, DUMPING: %s blacklisted: %v, malwaredetected: %v", len(sites), site, isBlacklisted, isMalwareFound)
 					sites[site] = status{isBlacklisted: prevResult.isBlacklisted, isMalwareFound: isMalwareFound}
 				}
 			} else {
 				// Found a new site to add to the map
 				if isBlacklisted {
-					//					log.Printf("DEBUG blacklisted++ len: %d, DUMPING: %s blacklisted: %v, malwaredetected: %v", len(sites), site, isBlacklisted, isMalwareFound)
 					sites[site] = status{isBlacklisted: isBlacklisted, isMalwareFound: prevResult.isMalwareFound}
 				} else if isMalwareFound {
-					//					log.Printf("DEBUG malwarefound++ len: %d, DUMPING: %s blacklisted: %v, malwaredetected: %v", len(sites), site, isBlacklisted, isMalwareFound)
 					sites[site] = status{isBlacklisted: prevResult.isBlacklisted, isMalwareFound: isMalwareFound}
 				}
 				sites[site] = status{isBlacklisted: isBlacklisted, isMalwareFound: isMalwareFound}
-				//				log.Printf("DEBUG cleanclean++ len: %d, DUMPING: %s blacklisted: %v, malwaredetected: %v", len(sites), site, isBlacklisted, isMalwareFound)
 			}
 		} else {
 			// Clobber and intentionally overwrite previous items in the map
