@@ -1,0 +1,11 @@
+site1.com clean clean
+site2.com blacklisted clean 
+site3.com blacklisted malwarefound 
+site4.com clean malwarefound
+site5.com clean malwarefound 
+site6.com clean clean
+site7.com clean clean
+site8.com clean clean
+site9.com clean malwarefound 
+site9.com clean clean
+sitea.com blacklisted malwarefound 
